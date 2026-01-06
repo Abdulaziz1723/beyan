@@ -8,9 +8,10 @@
     <script>
 
      $.ajax({
-        url:"/ayah.html",
+        url:"ayah.html",
         success:function(p){
             $("#Lmain").prepend (p);
+            document.getElementById("lesson-loading").style.display='none';
         }
     })   
 
@@ -39,7 +40,6 @@
                     data:{showLessons:true,filter:randomFilter},
                     success:function(p){
                        $("#Lmain").append (p);
-                       document.getElementById("lesson-loading").style.display='none';
                     }
                 });        
                 },2000)
