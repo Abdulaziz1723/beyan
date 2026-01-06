@@ -1,0 +1,59 @@
+<body>
+    <main id="Lmain">
+    </main>
+    <div class="loading" id="lesson-loading">
+        <div class="rotate"></div>
+        <h1>LOADING</h1>
+    </div>
+    <script>
+
+     $.ajax({
+        url:"https://abum.wuaze.com/store/pages/ayah.html",
+        success:function(p){
+            $("#Lmain").prepend (p);
+        }
+    })   
+
+        //the user's special content
+        
+        setTimeout(()=>{
+               $.ajax({
+            url:'https://abum.wuaze.com/store/php/show.php',
+            method:'post',
+            data:{showContent:true},
+            success:function(p){
+            $("#Lmain").append (p);
+            }
+        });     
+        },500)
+
+            //random content
+            function showLessons(){
+                let filters;
+                filters = ['name ASC','name DESC','content ASC','content DESC','photo ASC','photo DESC','id ASC','id DESC'];
+                let randomFilter = filters[Math.floor(Math.random()*filters.length)];
+               setTimeout(()=>{
+                    $.ajax({
+                    url:'https://abum.wuaze.com/store/php/show.php',
+                    method:'post',
+                    data:{showLessons:true,filter:randomFilter},
+                    success:function(p){
+                       $("#Lmain").append (p);
+                       document.getElementById("lesson-loading").style.display='none';
+                    }
+                });        
+                },2000)
+        
+            } 
+
+
+
+
+showLessons();
+    </script>
+</body>
+
+
+
+
+

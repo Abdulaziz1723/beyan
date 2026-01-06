@@ -155,7 +155,7 @@ function navHide() {document.getElementById('leftNav').style.display = "none";}
     function display(page,addToHistory) {
         $("#main").fadeOut(200,()=>{
             $.ajax({
-                url:`https://abum.wuaze.com/store/pages/${page}.html`,
+                url:`${page}.html`,
                 success:function(p){
                     $("#main").html (p).fadeIn(200);
                     if (addToHistory) {
