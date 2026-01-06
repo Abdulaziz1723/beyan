@@ -100,49 +100,5 @@
     </div>
 <script src="https://abum.wuaze.com/store/php/ajax.js"></script>
 <script src="https://abum.wuaze.com/store/php/script.js"></script>
-
-<script>
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/beyan/service-worker.js");
-}
-
-
-let deferredPrompt;
-const installBtn = document.getElementById("installAppBtn");
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = "block";
-});
-
-installBtn?.addEventListener("click", async () => {
-  installBtn.style.display = "none";
-  if (!deferredPrompt) return;
-
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-});
-
-
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-});
-
-
-document.addEventListener("click", function (e) {
-  const target = e.target.closest("a");
-  if (!target) return;
-
-  const sameOrigin = location.origin === new URL(target.href).origin;
-
-  if (!sameOrigin) {
-    e.preventDefault();
-    window.open(target.href, "_blank");
-  }
-});
-</script>
 </body>
 </html>
